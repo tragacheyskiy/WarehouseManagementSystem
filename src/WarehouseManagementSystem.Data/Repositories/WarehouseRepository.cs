@@ -43,15 +43,15 @@ public sealed class WarehouseRepository : IGetWarehouseByIdService, IGetWarehous
 
     public Task UpdateAsync(Warehouse warehouse)
     {
+        var now = _dateTimeProvider.NowUtc;
         var entity = new Entities.Warehouse
         {
             Id = warehouse.Id,
             Name = warehouse.Name,
-            ModifiedAt = _dateTimeProvider.NowUtc
+            ModifiedAt = now
         };
 
         _dbContext.Warehouses.Update(entity);
-
-        return _dbContext.SaveChangesAsync();
+        return Task.FromResult(_dbContext.SaveChanges());
     }
 }
