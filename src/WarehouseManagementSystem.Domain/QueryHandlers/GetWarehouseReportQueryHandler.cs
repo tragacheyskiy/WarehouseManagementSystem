@@ -36,17 +36,20 @@ public sealed class GetWarehouseReportQueryHandler : IQueryHandler<GetWarehouseR
 
         foreach (ProductsTransfer transfer in receiveTransfers)
         {
-            if (!warehouse.ReceiveProducts(transfer.Products))
+            if (!warehouse.DispatchProducts(transfer.Products))
                 return null;
         }
 
         foreach (ProductsTransfer transfer in dispatchTransfers)
         {
-            if (!warehouse.DispatchProducts(transfer.Products))
+            if (!warehouse.ReceiveProducts(transfer.Products))
                 return null;
         }
 
-        List<QuantitativeProductDto> products = warehouse.Products.Select(x => new QuantitativeProductDto(x.ProductId, x.Quantity)).ToList();
+        List<QuantitativeProductDto> products = warehouse.Products
+            .Where(x => x.Quantity > 0)
+            .Select(x => new QuantitativeProductDto(x.ProductId, x.Quantity))
+            .ToList();
 
         return new WarehouseReport(query.Time, warehouse.Name, products);
     }

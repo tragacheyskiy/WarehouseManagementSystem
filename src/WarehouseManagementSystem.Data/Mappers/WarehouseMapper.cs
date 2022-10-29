@@ -13,4 +13,14 @@ internal static class WarehouseMapper
     {
         return new Warehouse(entity.Id, entity.Name, ProductStockMapper.Map(entity.Products));
     }
+
+    public static Entities.Warehouse Map(Warehouse model)
+    {
+        return new Entities.Warehouse
+        {
+            Id = model.Id,
+            Name = model.Name,
+            Products = ProductStockMapper.Map(model.Products)
+        };
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 using WarehouseManagementSystem.Data.Mappers;
 using WarehouseManagementSystem.Domain.Models;
 using WarehouseManagementSystem.Domain.Services.Abstractions;
@@ -44,14 +45,24 @@ public sealed class WarehouseRepository : IGetWarehouseByIdService, IGetWarehous
     public Task UpdateAsync(Warehouse warehouse)
     {
         var now = _dateTimeProvider.NowUtc;
-        var entity = new Entities.Warehouse
+
+        var entity = WarehouseMapper.Map(warehouse);
+        entity.ModifiedAt = now;
+
+        foreach(var product in entity.Products)
         {
-            Id = warehouse.Id,
-            Name = warehouse.Name,
-            ModifiedAt = now
-        };
+            if (product.Id == Guid.Empty)
+            {
+                product.CreatedAt = now;
+            }
+            else
+            {
+                product.ModifiedAt = now;
+            }
+        }
 
         _dbContext.Warehouses.Update(entity);
-        return Task.FromResult(_dbContext.SaveChanges());
+
+        return _dbContext.SaveChangesAsync();
     }
 }

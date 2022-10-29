@@ -17,7 +17,7 @@ public sealed class GetWarehouseReportQueryHandlerTests
         Guid productId = Guid.NewGuid();
         long time = 2022_10_28_00_00_00;
 
-        var products = new List<QuantitativeProduct> { new QuantitativeProduct(productId, 10) };
+        var products = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, productId, 10) };
         Warehouse warehouse = new(warehouseId, "Source Warehouse", products);
 
         var getWarehouseServiceStub = new Mock<IGetWarehouseByIdService>();
@@ -53,7 +53,7 @@ public sealed class GetWarehouseReportQueryHandlerTests
         Guid productId = Guid.NewGuid();
         long time = 2022_10_28_00_00_00;
 
-        var products = new List<QuantitativeProduct> { new QuantitativeProduct(productId, 10) };
+        var products = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, productId, 13) };
         Warehouse warehouse = new(warehouseId, "Source Warehouse", products);
 
         var getWarehouseServiceStub = new Mock<IGetWarehouseByIdService>();
@@ -79,7 +79,7 @@ public sealed class GetWarehouseReportQueryHandlerTests
         WarehouseReport? result = await sut.HandleAsync(new GetWarehouseReportQuery(warehouseId, time));
 
         // Assert
-        var expected = new WarehouseReport(time, warehouse.Name, new[] { new QuantitativeProductDto(productId, 13) });
+        var expected = new WarehouseReport(time, warehouse.Name, new[] { new QuantitativeProductDto(productId, 10) });
         Assert.True(expected.Equals(result));
     }
 
@@ -91,7 +91,7 @@ public sealed class GetWarehouseReportQueryHandlerTests
         Guid productId = Guid.NewGuid();
         long time = 2022_10_28_00_00_00;
 
-        var products = new List<QuantitativeProduct> { new QuantitativeProduct(productId, 10) };
+        var products = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, productId, 10) };
         Warehouse warehouse = new(warehouseId, "Source Warehouse", products);
 
         var getWarehouseServiceStub = new Mock<IGetWarehouseByIdService>();

@@ -30,7 +30,8 @@ public sealed class ProductsTransferRepository : ICreateProductsTransferService,
         };
 
         _dbContext.ProductsTransfers.Add(entity);
-        return Task.FromResult(_dbContext.SaveChanges());
+
+        return _dbContext.SaveChangesAsync();
     }
 
     public async Task<IList<ProductsTransfer>> GetAsync(Guid warehouseId, long minTime, ProductsTransfer.Type type)

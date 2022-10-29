@@ -17,7 +17,7 @@ public sealed class TransferProductsCommandHandlerTests
         Guid targetWarehouseId = Guid.NewGuid();
         Guid sourceProductId = Guid.NewGuid();
 
-        var sourceProducts = new List<QuantitativeProduct> { new QuantitativeProduct(sourceProductId, 10) };
+        var sourceProducts = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, sourceProductId, 10) };
         Warehouse sourceWarehouse = CreateWarehouse(sourceWarehouseId, sourceProducts);
         Warehouse targetWarehouse = CreateWarehouse(targetWarehouseId, Enumerable.Empty<QuantitativeProduct>().ToList());
 
@@ -61,7 +61,7 @@ public sealed class TransferProductsCommandHandlerTests
         Guid targetWarehouseId = Guid.NewGuid();
         Guid sourceProductId = Guid.NewGuid();
 
-        var sourceProducts = new List<QuantitativeProduct> { new QuantitativeProduct(sourceProductId, 10) };
+        var sourceProducts = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, sourceProductId, 10) };
         Warehouse sourceWarehouse = CreateWarehouse(sourceWarehouseId, sourceProducts);
         Warehouse targetWarehouse = CreateWarehouse(targetWarehouseId, Enumerable.Empty<QuantitativeProduct>().ToList());
 
@@ -104,7 +104,7 @@ public sealed class TransferProductsCommandHandlerTests
         Guid targetWarehouseId = Guid.NewGuid();
         Guid sourceProductId = Guid.NewGuid();
 
-        var sourceProducts = new List<QuantitativeProduct> { new QuantitativeProduct(sourceProductId, 10) };
+        var sourceProducts = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, sourceProductId, 10) };
         Warehouse sourceWarehouse = CreateWarehouse(sourceWarehouseId, sourceProducts);
         Warehouse targetWarehouse = CreateWarehouse(targetWarehouseId, Enumerable.Empty<QuantitativeProduct>().ToList());
 
@@ -147,7 +147,7 @@ public sealed class TransferProductsCommandHandlerTests
         Guid targetWarehouseId = Guid.NewGuid();
         Guid sourceProductId = Guid.NewGuid();
 
-        var sourceProducts = new List<QuantitativeProduct> { new QuantitativeProduct(sourceProductId, 10) };
+        var sourceProducts = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, sourceProductId, 10) };
         Warehouse sourceWarehouse = CreateWarehouse(sourceWarehouseId, sourceProducts);
         Warehouse targetWarehouse = CreateWarehouse(targetWarehouseId, Enumerable.Empty<QuantitativeProduct>().ToList());
 

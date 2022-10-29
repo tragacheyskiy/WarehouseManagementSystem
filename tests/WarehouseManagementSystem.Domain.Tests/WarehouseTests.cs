@@ -9,7 +9,7 @@ public sealed class WarehouseTests
     public void Successful_products_receiving()
     {
         Guid productId = Guid.NewGuid();
-        var products = new List<QuantitativeProduct> { new QuantitativeProduct(productId, 7) };
+        var products = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, productId, 7) };
         var transferProducts = new List<QuantitativeProductDto> { new QuantitativeProductDto(productId, 10) };
         var sut = new Warehouse(Guid.NewGuid(), string.Empty, products);
 
@@ -50,7 +50,7 @@ public sealed class WarehouseTests
     public void Dispatching_products_with_quantity_more_than_stock_is_fails()
     {
         Guid productId = Guid.NewGuid();
-        var products = new List<QuantitativeProduct> { new QuantitativeProduct(productId, 10) };
+        var products = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, productId, 10) };
         var transferProducts = new List<QuantitativeProductDto> { new QuantitativeProductDto(Guid.NewGuid(), 15) };
         var sut = new Warehouse(Guid.NewGuid(), string.Empty, products);
 
@@ -64,7 +64,7 @@ public sealed class WarehouseTests
     public void Dispatching_non_existent_products_is_fails()
     {
         Guid productId = Guid.NewGuid();
-        var products = new List<QuantitativeProduct> { new QuantitativeProduct(productId, 10) };
+        var products = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, productId, 10) };
         var transferProducts = new List<QuantitativeProductDto> { new QuantitativeProductDto(Guid.NewGuid(), 5) };
         var sut = new Warehouse(Guid.NewGuid(), string.Empty, products);
 
@@ -78,7 +78,7 @@ public sealed class WarehouseTests
     public void Successful_products_dispathing()
     {
         Guid productId = Guid.NewGuid();
-        var products = new List<QuantitativeProduct> { new QuantitativeProduct(productId, 10) };
+        var products = new List<QuantitativeProduct> { new QuantitativeProduct(Guid.Empty, productId, 10) };
         var transferProducts = new List<QuantitativeProductDto> { new QuantitativeProductDto(productId, 5) };
         var sut = new Warehouse(Guid.NewGuid(), string.Empty, products);
 

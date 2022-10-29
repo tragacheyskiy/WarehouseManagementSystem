@@ -2,12 +2,14 @@
 
 public sealed class QuantitativeProduct
 {
-    public QuantitativeProduct(Guid productId, int quantity)
+    public QuantitativeProduct(Guid id, Guid productId, int quantity)
     {
+        Id = id;
         ProductId = productId;
         Quantity = quantity;
     }
 
+    public Guid Id { get; }
     public Guid ProductId { get; }
     public int Quantity { get; private set; }
 

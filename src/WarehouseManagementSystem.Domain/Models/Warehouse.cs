@@ -28,7 +28,7 @@ public sealed class Warehouse
 
             if (existingProduct is null)
             {
-                var newProduct = new QuantitativeProduct(quantitativeProductDto.ProductId, quantitativeProductDto.Quantity);
+                var newProduct = new QuantitativeProduct(Guid.Empty, quantitativeProductDto.ProductId, quantitativeProductDto.Quantity);
                 _products.Add(newProduct);
                 continue;
             }

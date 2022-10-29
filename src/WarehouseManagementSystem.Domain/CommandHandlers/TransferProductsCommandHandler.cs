@@ -37,9 +37,8 @@ public sealed class TransferProductsCommandHandler : ICommandHandler<TransferPro
             return null;
         }
 
-        await Task.WhenAll(
-            _updateWarehouseService.UpdateAsync(sourceWarehouse),
-            _updateWarehouseService.UpdateAsync(targetWarehouse));
+        await _updateWarehouseService.UpdateAsync(sourceWarehouse);
+        await _updateWarehouseService.UpdateAsync(targetWarehouse);
 
         return new ProductsTransfer(_dateTimeProvider.NowUtc, command.SourceWarehouseId, command.TargetWarehouseId, command.Products);
     }
